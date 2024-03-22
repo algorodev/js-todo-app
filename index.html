@@ -8,7 +8,20 @@
 	<title>JS Todo List</title>
 </head>
 <body>
-	<h1>JS Todo List</h1>
+	<main class="container">
+		<section class="box">
+			<form id="todo-form" class="form">
+				<label class="form-control">
+					What to do?
+					<input type="text">
+				</label>
+				<button class="form-button">Submit</button>
+			</form>
+		</section>
+		<section class="box">
+			<ul id="todo-list"></ul>
+		</section>
+	</main>
 	<script src="/src/index.js"></script>
 </body>
 </html>

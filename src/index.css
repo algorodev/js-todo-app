@@ -9,3 +9,38 @@ body {
 	color: #212121;
 	font-family: 'Verdana', sans-serif;
 }
+
+.container {
+	width: 100vw;
+	height: 100vh;
+	padding: 4rem;
+	margin: auto;
+
+	@media (width <= 700px) {
+		padding: 2rem;
+	}
+}
+
+.box {
+	max-width: 700px;
+	margin: 0 auto 48px;
+
+	@media (width <= 700px) {
+		margin-bottom: 38px;
+	}
+}
+
+.form {
+	display: flex;
+	gap: 20px;
+
+	.form-control {
+		display: flex;
+		gap: 5px;
+		flex: 1;
+
+		input {
+			flex: 1;
+		}
+	}
+}
