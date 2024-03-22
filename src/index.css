@@ -3,3 +3,9 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+
+body {
+	background-color: #FAFAFA;
+	color: #212121;
+	font-family: 'Verdana', sans-serif;
+}
