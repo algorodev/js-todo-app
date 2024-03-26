@@ -5,13 +5,7 @@ let todoList = []
 document.addEventListener('DOMContentLoaded', () => {
 	const localData = getLocalData()
 	if (localData) todoList.push(...localData)
-	if (todoList.length) {
-		refreshTodoList()
-
-		todoList.forEach((todo) => {
-			assignEventListeners(todo)
-		})
-	}
+	if (todoList.length) refreshTodoList()
 })
 
 todoFormElement.addEventListener('submit', (event) => {
@@ -23,7 +17,6 @@ todoFormElement.addEventListener('submit', (event) => {
 	assignTodoItemToList(item)
 	saveLocalData()
 	refreshTodoList()
-	assignEventListeners(item)
 
 	todoFormElement.reset()
 })
@@ -43,6 +36,7 @@ const refreshTodoList = () => {
 	todoList.forEach(todo => {
 		const listElement = createListElement(todo)
 		todoListElement.append(listElement)
+		assignEventListeners(todo)
 	})
 }
 
@@ -95,7 +89,6 @@ const assignEventListeners = (todo) => {
 		const item = getTodoById(todo.id)
 		updateTodoById(item)
 		refreshTodoList()
-		assignEventListeners(todo)
 	})
 
 	trashElement.addEventListener('click', () => {
