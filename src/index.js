@@ -1,6 +1,12 @@
 const todoFormElement = document.getElementById('todo-form'),
-	todoListElement = document.getElementById('todo-list'),
-	todoList = []
+	todoListElement = document.getElementById('todo-list')
+let todoList = []
+
+document.addEventListener('DOMContentLoaded', () => {
+	const localData = getLocalData()
+	if (localData) todoList.push(...localData)
+	refreshTodoList()
+})
 
 todoFormElement.addEventListener('submit', (event) => {
 	event.preventDefault()
@@ -68,4 +74,8 @@ const clearTodoList = () => {
 
 const saveLocalData = () => {
 	localStorage.setItem('list', JSON.stringify(todoList))
+}
+
+const getLocalData = () => {
+	return JSON.parse(localStorage.getItem('list'))
 }
