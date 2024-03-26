@@ -23,6 +23,7 @@ todoFormElement.addEventListener('submit', (event) => {
 	assignTodoItemToList(item)
 	saveLocalData()
 	refreshTodoList()
+	assignEventListeners(item)
 
 	todoFormElement.reset()
 })
