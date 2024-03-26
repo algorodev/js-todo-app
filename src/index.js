@@ -52,7 +52,7 @@ const createListElement = (todo) => {
 			<article class="todo">
 				<header class="todo-header">
 					<h4 id="todo-item-${todo.id}" class="todo-title">${todo.title}</h4>
-					<svg width="24px" height="24px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<svg id="trash-item-${todo.id}" width="24px" height="24px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 							<title>delete [#1487]</title>
 							<desc>Created with Sketch.</desc>
 							<defs></defs>
@@ -87,13 +87,19 @@ const getLocalData = () => {
 }
 
 const assignEventListeners = (todo) => {
-	const element = document.getElementById(`todo-item-${todo.id}`)
+	const todoElement = document.getElementById(`todo-item-${todo.id}`)
+	const trashElement = document.getElementById(`trash-item-${todo.id}`)
 
-	element.addEventListener('click', () => {
+	todoElement.addEventListener('click', () => {
 		const item = getTodoById(todo.id)
 		updateTodoById(item)
 		refreshTodoList()
 		assignEventListeners(todo)
+	})
+
+	trashElement.addEventListener('click', () => {
+		deleteTodoById(todo)
+		refreshTodoList()
 	})
 }
 
@@ -103,5 +109,10 @@ const getTodoById = (id) => {
 
 const updateTodoById = (todo) => {
 	todo.completed = !todo.completed
+	saveLocalData()
+}
+
+const deleteTodoById = (todo) => {
+	todoList = todoList.filter((item) => item.id !== todo.id)
 	saveLocalData()
 }
