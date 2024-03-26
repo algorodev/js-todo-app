@@ -9,6 +9,7 @@ todoFormElement.addEventListener('submit', (event) => {
 
 	const item = createTodoItem(value)
 	assignTodoItemToList(item)
+	saveLocalData()
 	refreshTodoList()
 
 	todoFormElement.reset()
@@ -63,4 +64,8 @@ const createListElement = (todo) => {
 
 const clearTodoList = () => {
 	todoListElement.replaceChildren()
+}
+
+const saveLocalData = () => {
+	localStorage.setItem('list', JSON.stringify(todoList))
 }
