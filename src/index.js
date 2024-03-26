@@ -5,7 +5,13 @@ let todoList = []
 document.addEventListener('DOMContentLoaded', () => {
 	const localData = getLocalData()
 	if (localData) todoList.push(...localData)
-	refreshTodoList()
+	if (todoList.length) {
+		refreshTodoList()
+
+		todoList.forEach((todo) => {
+			assignEventListeners(todo)
+		})
+	}
 })
 
 todoFormElement.addEventListener('submit', (event) => {
@@ -45,7 +51,7 @@ const createListElement = (todo) => {
 	listElement.innerHTML = `
 			<article class="todo">
 				<header class="todo-header">
-					<h4 class="todo-title">${todo.title}</h4>
+					<h4 id="todo-item-${todo.id}" class="todo-title">${todo.title}</h4>
 					<svg width="24px" height="24px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 							<title>delete [#1487]</title>
 							<desc>Created with Sketch.</desc>
@@ -78,4 +84,24 @@ const saveLocalData = () => {
 
 const getLocalData = () => {
 	return JSON.parse(localStorage.getItem('list'))
+}
+
+const assignEventListeners = (todo) => {
+	const element = document.getElementById(`todo-item-${todo.id}`)
+
+	element.addEventListener('click', () => {
+		const item = getTodoById(todo.id)
+		updateTodoById(item)
+		refreshTodoList()
+		assignEventListeners(todo)
+	})
+}
+
+const getTodoById = (id) => {
+	return todoList.find((todo) => todo.id === id)
+}
+
+const updateTodoById = (todo) => {
+	todo.completed = !todo.completed
+	saveLocalData()
 }
