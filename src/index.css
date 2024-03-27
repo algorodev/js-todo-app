@@ -43,21 +43,31 @@ li {
 
 .form {
 	display: flex;
+	align-items: flex-end;
 	gap: 20px;
+}
 
-	.form-control {
-		display: flex;
-		gap: 5px;
-		flex: 1;
+.form > .form-control {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	flex: 1;
+}
 
-		input {
-			flex: 1;
-		}
+.form > .form-control > input {
+	flex: 1;
+	padding: 6px 4px;
+	background-color: transparent;
+	border: 1px solid #212121;
+	border-radius: 8px;
+}
 
-		@media (width <= 700px) {
-			flex-direction: column;
-		}
-	}
+.form > .form-button {
+	padding: 6px 4px;
+	background-color: transparent;
+	border: 1px solid #212121;
+	border-radius: 8px;
+	cursor: pointer;
 }
 
 .todo-list {
