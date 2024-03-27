@@ -2,11 +2,26 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<meta name='description' content='Simple web application where users can add, remove, and mark tasks as complete.' />
+	<meta name='description' content='Simple web application where users can add, remove, and mark tasks as complete with persistence of the data on the browser.' />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>JS Todo List</title>
+	<link rel="stylesheet" href="src/index.css">
+	<title>JS Todo App</title>
 </head>
 <body>
-	<h1>JS Todo List</h1>
+	<main class="container">
+		<section class="box">
+			<form id="todo-form" class="form">
+				<label class="form-control">
+					What needs to be done?
+					<input id="title" name="title" type="text" required>
+				</label>
+				<button type="submit" class="form-button">Submit</button>
+			</form>
+		</section>
+		<section class="box">
+			<ul id="todo-list" class="todo-list"></ul>
+		</section>
+	</main>
+	<script src="/src/index.js"></script>
 </body>
 </html>

@@ -1,20 +1,21 @@
 <div align="center">
     <h2>JS Todo List</h2>
-    <a href="https://algorodev.com">Try it</a>
+    <p>Try it on <a href="https://js-todo-app-algorodev.netlify.app/">demo</a></p>
 </div>
-
 <div align="center">
-    <a href="#🛠️-stack">
-        Stack
-    </a>
-    <span>&nbsp;✦&nbsp;</span>
-    <a href="#🚀-setup">
-        Setup
-    </a>
-    <span>&nbsp;✦&nbsp;</span>
-    <a href="#🔑-license">
-        License
-    </a>
+
+[Introduction](#introduction)
+<span>&nbsp;✦&nbsp;</span>
+[Stack](#stack)
+<span>&nbsp;✦&nbsp;</span>
+[Features](#features)
+<span>&nbsp;✦&nbsp;</span>
+[Setup](#setup)
+<span>&nbsp;✦&nbsp;</span>
+[Usage](#usage)
+<span>&nbsp;✦&nbsp;</span>
+[License](#license)
+
 </div>
 
 <div align="center">
@@ -26,13 +27,29 @@
 
 </div>
 
-## 🛠️ Stack
+## Introduction
+
+The Todo App is a simple, user-friendly application designed to help individuals manage their daily tasks efficiently.
+Built with HTML5, CSS3, and JavaScript, this app offers a sleek, responsive design that works on both desktop and mobile
+browsers. Users can add and delete tasks, and mark tasks as completed, with persistence of the data on the browser.
+
+## Stack
 
 - **HTML** - Markup language for web pages.
 - **CSS** - Styles web content.
 - **Javascript** - High-level, interpreted programming language.
 
-## 🚀 Setup
+## Features
+
+- **Add Tasks:** Easily add new tasks to your todo list.
+- **Delete Tasks:** Remove tasks from your list once they are no longer needed.
+- **Mark as Completed:** Check off tasks as you complete them, keeping track of your accomplishments.
+- **Persistence:** Your tasks are saved in the browser's local storage, so they remain available across sessions.
+
+
+## Setup
+
+To use the Todo App, simply clone the repository to your local machine:
 
 ### 1. Clone this [repo](https://github.com/algorodev/js-todo-app)
 
@@ -46,12 +63,15 @@ git clone https://github.com/algorodev/js-todo-app
 cd js-todo-app
 ```
 
-### 3. Open in browser
+Since this project consists only of static files (HTML, CSS, JavaScript), you can open the `index.html` file in any modern web browser to start using the app immediately.
 
-```bash
-open index.html
-```
+## Usage
 
-## 🔑 License
+1. **Adding a Task:** Click on the "Submit" button or press `Enter` to add a new task to your list.
+2. **Deleting a Task:** Click on the delete icon button next to the task you wish to remove.
+3. **Marking a Task as Completed:** Click on the label of the task to mark it as completed.
 
-[MIT](LICENSE) - Creado por **algorodev**.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
