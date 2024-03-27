@@ -13,6 +13,8 @@ todoFormElement.addEventListener('submit', (event) => {
 
 	let { value } = document.getElementById('title')
 
+	if (value === '') return
+
 	const item = createTodoItem(value)
 	assignTodoItemToList(item)
 	saveLocalData()
