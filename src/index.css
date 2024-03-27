@@ -1,7 +1,14 @@
+html {
+	box-sizing: border-box;
+}
+
 * {
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
+}
+
+*, *:after, *:before {
+	box-sizing: inherit;
 }
 
 body {
@@ -46,5 +53,60 @@ li {
 		input {
 			flex: 1;
 		}
+
+		@media (width <= 700px) {
+			flex-direction: column;
+		}
 	}
+}
+
+.todo-list {
+	width: 100%;
+	display: grid;
+	gap: 15px;
+}
+
+.todo {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	padding: 6px;
+	background-color: #EEE;
+	border: 1px solid transparent;
+	border-radius: 8px;
+	transition: 0.2s;
+}
+
+.todo:hover {
+	border-color: #555;
+	box-shadow: 0 3px 5px rgba(33, 33, 33, 0.1);
+}
+
+.todo > .todo-title {
+	flex: 1;
+	height: 100%;
+}
+
+.todo > .todo-title.completed {
+	pointer-events: none;
+	color: #555;
+	text-decoration: line-through;
+}
+
+.todo > .todo-title:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.todo > .todo-action {
+	display: none;
+}
+
+.todo > .todo-action.completed {
+	display: block;
+}
+
+.todo > .todo-action:hover {
+	cursor: pointer;
+	filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
 }
