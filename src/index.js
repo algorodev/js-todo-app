@@ -46,9 +46,9 @@ const createListElement = (todo) => {
 	const listElement = document.createElement('li')
 	listElement.id = todo.id
 	listElement.innerHTML = `
-			<article class="todo">
-				<h4 id="todo-item-${todo.id}" class="todo-title ${todo.completed ? 'completed' : ''}">${todo.title}</h4>
-				<svg id="trash-item-${todo.id}" class="todo-action ${todo.completed ? 'completed' : ''}" width="24px" height="24px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+			<article class="todo" id="todo-item-${todo.id}">
+				<h4 class="todo-title ${todo.completed ? 'completed' : ''}">${todo.title}</h4>
+				<svg class="todo-action ${todo.completed ? 'completed' : ''}" width="16px" height="16px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 						<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 								<g id="Dribbble-Light-Preview" transform="translate(-179.000000, -360.000000)" fill="#333">
 										<g id="icons" transform="translate(56.000000, 160.000000)">
@@ -77,16 +77,10 @@ const getLocalData = () => {
 
 const assignEventListeners = (todo) => {
 	const todoElement = document.getElementById(`todo-item-${todo.id}`)
-	const trashElement = document.getElementById(`trash-item-${todo.id}`)
 
 	todoElement.addEventListener('click', () => {
 		const item = getTodoById(todo.id)
-		updateTodoById(item)
-		refreshTodoList()
-	})
-
-	trashElement.addEventListener('click', () => {
-		deleteTodoById(todo)
+		todo.completed ? deleteTodoById(item) : updateTodoById(item)
 		refreshTodoList()
 	})
 }
