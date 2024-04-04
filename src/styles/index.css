@@ -1,3 +1,5 @@
+@import 'variables.css';
+
 html {
 	box-sizing: border-box;
 }
@@ -11,10 +13,14 @@ html {
 	box-sizing: inherit;
 }
 
+*:focus {
+	outline: none;
+}
+
 body {
-	background-color: #FAFAFA;
-	color: #212121;
-	font-family: 'Verdana', sans-serif;
+	background: var(--gradient-background);
+	color: var(--color-text);
+	font-family: var(--font-primary);
 }
 
 li {
@@ -52,22 +58,36 @@ li {
 	flex-direction: column;
 	gap: 5px;
 	flex: 1;
+	color: var(--color-white);
+	font-weight: bold;
+	outline: none;
 }
 
 .form > .form-control > input {
 	flex: 1;
 	padding: 6px 4px;
-	background-color: transparent;
-	border: 1px solid #212121;
+	background-color: var(--color-white);
+	border: 3px solid var(--color-border);
 	border-radius: 8px;
 }
 
+.form > .form-control > input:hover,
+.form > .form-control > input:focus {
+	border-color: var(--color-primary);
+}
+
 .form > .form-button {
-	padding: 6px 4px;
-	background-color: transparent;
-	border: 1px solid #212121;
+	padding: 6px 8px;
+	background-color: var(--color-white);
+	border: 3px solid var(--color-border);
 	border-radius: 8px;
+	font-weight: bold;
 	cursor: pointer;
+}
+
+.form > .form-button:hover,
+.form > .form-button:focus {
+	border-color: var(--color-primary);
 }
 
 .todo-list {
@@ -80,16 +100,17 @@ li {
 	display: flex;
 	align-items: center;
 	gap: 20px;
-	padding: 6px;
-	background-color: #EEE;
-	border: 1px solid transparent;
+	padding: 10px 3px;
+	background-color: var(--color-white);
+	border: 3px solid var(--color-border);
 	border-radius: 8px;
 	transition: 0.2s;
 }
 
 .todo:hover {
-	border-color: #555;
-	box-shadow: 0 3px 5px rgba(33, 33, 33, 0.1);
+	cursor: pointer;
+	border-color: var(--color-primary);
+	box-shadow: 0 3px 5px var(--color-shadow);
 }
 
 .todo > .todo-title {
@@ -99,13 +120,8 @@ li {
 
 .todo > .todo-title.completed {
 	pointer-events: none;
-	color: #555;
+	color: var(--color-disabled);
 	text-decoration: line-through;
-}
-
-.todo > .todo-title:hover {
-	cursor: pointer;
-	text-decoration: underline;
 }
 
 .todo > .todo-action {
@@ -116,7 +132,6 @@ li {
 	display: block;
 }
 
-.todo > .todo-action:hover {
-	cursor: pointer;
+.todo:hover > .todo-action {
 	filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
 }
