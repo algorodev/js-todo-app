@@ -1,6 +1,8 @@
 const todoFormElement = document.getElementById('todo-form')
 const	todoListElement = document.getElementById('todo-list')
 let todoList = []
+let	lastId = 0
+let	lastTimestamp = Date.now()
 
 document.addEventListener('DOMContentLoaded', () => loadTodoList())
 
@@ -34,10 +36,24 @@ const addTodo = (title) => {
 }
 
 const createTodoItem = (title) => ({
-	id: `todo-${todoList.length + 1}`,
+	id: generateTodoId(),
 	title,
-	completed: false
+	completed: false,
+	createdAt: new Date().toISOString(),
 })
+
+const generateTodoId = () => {
+	const timestamp = Date.now()
+
+	if (timestamp === lastTimestamp) {
+		lastId++
+	} else {
+		lastId = 0
+		lastTimestamp = timestamp
+	}
+
+	return `todo-${timestamp}-${lastId}`
+}
 
 const refreshTodoList = () => {
 	clearTodoList()
