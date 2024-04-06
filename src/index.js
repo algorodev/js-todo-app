@@ -70,7 +70,7 @@ const createListElement = (todo) => {
 	listElement.innerHTML = `
 			<article class="todo">
 				<h4 class="todo-title ${todo.completed ? 'completed' : ''}">${todo.title}</h4>
-				<svg class="todo-action ${todo.completed ? 'completed' : ''}" width="16px" height="16px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<svg class="todo-action ${todo.completed ? 'completed' : ''}" width="16px" height="16px" viewBox="0 -0.5 21 21" xmlns="http://www.w3.org/2000/svg">
 						<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 								<g id="Dribbble-Light-Preview" transform="translate(-179.000000, -360.000000)" fill="#333">
 										<g id="icons" transform="translate(56.000000, 160.000000)">
