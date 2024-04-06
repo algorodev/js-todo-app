@@ -61,7 +61,6 @@ const refreshTodoList = () => {
 	todoList.forEach(todo => {
 		const listElement = createListElement(todo)
 		todoListElement.append(listElement)
-		assignEventListeners(todo)
 	})
 }
 
@@ -69,7 +68,7 @@ const createListElement = (todo) => {
 	const listElement = document.createElement('li')
 	listElement.id = todo.id
 	listElement.innerHTML = `
-			<article class="todo" id="todo-item-${todo.id}">
+			<article class="todo">
 				<h4 class="todo-title ${todo.completed ? 'completed' : ''}">${todo.title}</h4>
 				<svg class="todo-action ${todo.completed ? 'completed' : ''}" width="16px" height="16px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 						<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -83,7 +82,16 @@ const createListElement = (todo) => {
 			</article>
 		`
 
+	listElement.addEventListener('click', () => handleTodoClick(todo.id))
+
 	return listElement
+}
+
+const handleTodoClick = (todoId) => {
+	const todo = getTodoById(todoId)
+	todo.completed ? deleteTodoById(todo) : markTodoAsCompleted(todo)
+	saveLocalData()
+	refreshTodoList()
 }
 
 const clearTodoList = () => {
@@ -96,26 +104,12 @@ const saveLocalData = () => {
 
 const getLocalData = () => JSON.parse(localStorage.getItem('todoList')) || []
 
-const assignEventListeners = (todo) => {
-	const todoElement = document.getElementById(`todo-item-${todo.id}`)
+const getTodoById = (id) => todoList.find((todo) => todo.id === id)
 
-	todoElement.addEventListener('click', () => {
-		const item = getTodoById(todo.id)
-		todo.completed ? deleteTodoById(item) : updateTodoById(item)
-		refreshTodoList()
-	})
-}
-
-const getTodoById = (id) => {
-	return todoList.find((todo) => todo.id === id)
-}
-
-const updateTodoById = (todo) => {
+const markTodoAsCompleted = (todo) => {
 	todo.completed = !todo.completed
-	saveLocalData()
 }
 
 const deleteTodoById = (todo) => {
 	todoList = todoList.filter((item) => item.id !== todo.id)
-	saveLocalData()
 }
