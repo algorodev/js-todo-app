@@ -1,37 +1,43 @@
-const todoFormElement = document.getElementById('todo-form'),
-	todoListElement = document.getElementById('todo-list')
+const todoFormElement = document.getElementById('todo-form')
+const	todoListElement = document.getElementById('todo-list')
 let todoList = []
 
-document.addEventListener('DOMContentLoaded', () => {
-	const localData = getLocalData()
-	if (localData) todoList.push(...localData)
-	if (todoList.length) refreshTodoList()
-})
+document.addEventListener('DOMContentLoaded', () => loadTodoList())
 
-todoFormElement.addEventListener('submit', (event) => {
+todoFormElement.addEventListener('submit', (event) => handleFormSubmit(event))
+
+const loadTodoList = () => {
+	const localData = getLocalData()
+	if (localData) {
+		todoList = localData
+		refreshTodoList()
+	}
+}
+
+const handleFormSubmit = (event) => {
 	event.preventDefault()
 
-	let { value } = document.getElementById('title')
+	const titleInput = document.getElementById('title')
+	const title = titleInput.value.trim()
 
-	if (value === '') return
+	if (title) {
+		addTodo(title)
+		titleInput.value = ''
+	}
+}
 
-	const item = createTodoItem(value)
-	assignTodoItemToList(item)
+const addTodo = (title) => {
+	const todoItem = createTodoItem(title)
+	todoList.push(todoItem)
 	saveLocalData()
 	refreshTodoList()
-
-	todoFormElement.reset()
-})
+}
 
 const createTodoItem = (title) => ({
 	id: `todo-${todoList.length + 1}`,
 	title,
 	completed: false
 })
-
-const assignTodoItemToList = (item) => {
-	todoList.push(item)
-}
 
 const refreshTodoList = () => {
 	clearTodoList()
