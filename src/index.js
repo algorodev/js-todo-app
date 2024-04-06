@@ -87,7 +87,7 @@ const createListElement = (todo) => {
 }
 
 const clearTodoList = () => {
-	todoListElement.replaceChildren()
+	todoListElement.innerHTML = ''
 }
 
 const saveLocalData = () => {
