@@ -13,6 +13,7 @@ const loadTodoList = () => {
 
 	if (localData.length) {
 		todoList = localData
+		sortTodoListPerDate()
 		refreshTodoList()
 	}
 }
@@ -33,6 +34,7 @@ const addTodo = (title) => {
 	const todoItem = createTodoItem(title)
 	todoList.push(todoItem)
 	saveLocalData()
+	sortTodoListPerDate()
 	refreshTodoList()
 }
 
@@ -112,4 +114,8 @@ const markTodoAsCompleted = (todo) => {
 
 const deleteTodoById = (todo) => {
 	todoList = todoList.filter((item) => item.id !== todo.id)
+}
+
+const sortTodoListPerDate = () => {
+	todoList.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 }
