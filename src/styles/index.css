@@ -1,0 +1,155 @@
+@import 'variables.css';
+
+html {
+	box-sizing: border-box;
+}
+
+* {
+	margin:  0;
+	padding: 0;
+}
+
+*, *:after, *:before {
+	box-sizing: inherit;
+}
+
+*:focus {
+	outline: none;
+}
+
+body {
+	background:  var(--color-background);
+	color:       var(--color-text);
+	font-family: var(--font-primary);
+}
+
+li {
+	list-style: none;
+}
+
+.container {
+	width:   100vw;
+	height:  100vh;
+	padding: 4rem;
+	margin:  auto;
+
+	@media (width <= 700px) {
+		padding: 2rem;
+	}
+}
+
+.box {
+	max-width: 700px;
+	margin:    0 auto 20px;
+
+	@media (width <= 700px) {
+		margin-bottom: 38px;
+	}
+}
+
+.form {
+	display:     flex;
+	align-items: flex-end;
+	gap:         20px;
+}
+
+.form > .form-control {
+	display:        flex;
+	flex-direction: column;
+	gap:            5px;
+	flex:           1;
+	font-weight:    bold;
+	outline:        none;
+}
+
+.form > .form-control > input {
+	flex:             1;
+	padding:          6px 4px;
+	background-color: var(--color-white);
+	border:           3px solid var(--color-border);
+	border-radius:    8px;
+}
+
+.form > .form-control > input:hover,
+.form > .form-control > input:focus {
+	border-color: var(--color-primary);
+}
+
+.form > .form-button {
+	padding:          6px 8px;
+	background-color: var(--color-white);
+	border:           3px solid var(--color-border);
+	border-radius:    8px;
+	font-weight:      bold;
+	cursor:           pointer;
+}
+
+.form > .form-button:hover {
+	border-color: var(--color-primary);
+}
+
+.todo-filters {
+	display:       flex;
+	gap:           20px;
+	margin-bottom: 20px;
+}
+
+.todo-filters > .filter-button {
+	padding:          6px 8px;
+	background-color: var(--color-white);
+	border:           3px solid var(--color-border);
+	border-radius:    8px;
+	font-weight:      bold;
+	cursor:           pointer;
+}
+
+.todo-filters > .filter-button:hover,
+.todo-filters > .filter-button.active {
+	border-color: var(--color-primary);
+}
+
+.todo-list {
+	width:   100%;
+	display: grid;
+	gap:     15px;
+}
+
+.todo {
+	display:          flex;
+	align-items:      center;
+	gap:              20px;
+	padding:          10px 3px;
+	background-color: var(--color-white);
+	border:           3px solid var(--color-border);
+	border-radius:    8px;
+	transition:       0.2s;
+}
+
+.todo:hover {
+	cursor:       pointer;
+	border-color: var(--color-primary);
+	box-shadow:   0 3px 5px var(--color-shadow);
+}
+
+.todo > .todo-title {
+	flex:   1;
+	height: 100%;
+}
+
+.todo > .todo-title.completed {
+	pointer-events:  none;
+	color:           var(--color-disabled);
+	text-decoration: line-through;
+}
+
+.todo > .todo-action {
+	display: none;
+}
+
+.todo > .todo-action.completed {
+	display: block;
+}
+
+.todo:hover > .todo-action {
+	filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
