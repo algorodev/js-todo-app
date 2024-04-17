@@ -9,6 +9,5 @@
 	--color-border: var(--color-black);
 	--color-shadow: rgba(0, 0, 0, 0.1);
 	--color-disabled: #555;
-	--gradient-background: linear-gradient(0deg, var(--color-tertiary) 0%, var(--color-secondary) 100%);
 	--font-primary: 'Roboto', sans-serif;
 }

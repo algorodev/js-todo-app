@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<meta name='description' content='Simple web application where users can add, remove, and mark tasks as complete with persistence of the data on the browser.' />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="UTF-8"/>
+	<meta name='description'
+	      content='Simple web application where users can add, remove, and mark tasks as complete with persistence of the data on the browser.'/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<link rel="stylesheet" href="src/styles/index.css">
 	<title>JS Todo App</title>
 </head>
@@ -19,6 +20,11 @@
 			</form>
 		</section>
 		<section class="box">
+			<div class="todo-filters">
+				<button id="all-filter" class="filter-button active">All</button>
+				<button id="active-filter" class="filter-button">Active</button>
+				<button id="completed-filter" class="filter-button">Completed</button>
+			</div>
 			<ul id="todo-list" class="todo-list"></ul>
 		</section>
 	</main>

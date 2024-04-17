@@ -1,18 +1,26 @@
 const todoFormElement = document.getElementById('todo-form')
-const	todoListElement = document.getElementById('todo-list')
+const todoListElement = document.getElementById('todo-list')
+const filters = ['all', 'active', 'completed']
 let todoList = []
-let	lastId = 0
-let	lastTimestamp = Date.now()
+let lastId = 0
+let lastTimestamp = Date.now()
+let filter = 'all'
 
 document.addEventListener('DOMContentLoaded', () => loadTodoList())
 
 todoFormElement.addEventListener('submit', (event) => handleFormSubmit(event))
+
+filters.forEach((filter) => {
+	document.getElementById(`${filter}-filter`)
+		.addEventListener('click', () => handleFilterClick(filter))
+})
 
 const loadTodoList = () => {
 	const localData = getLocalData()
 
 	if (localData.length) {
 		todoList = localData
+		sortTodoListPerDate()
 		refreshTodoList()
 	}
 }
@@ -33,6 +41,7 @@ const addTodo = (title) => {
 	const todoItem = createTodoItem(title)
 	todoList.push(todoItem)
 	saveLocalData()
+	sortTodoListPerDate()
 	refreshTodoList()
 }
 
@@ -58,7 +67,9 @@ const generateTodoId = () => {
 
 const refreshTodoList = () => {
 	clearTodoList()
-	todoList.forEach(todo => {
+
+	const filteredTodoList = filterTodoList()
+	filteredTodoList.forEach(todo => {
 		const listElement = createListElement(todo)
 		todoListElement.append(listElement)
 	})
@@ -112,4 +123,32 @@ const markTodoAsCompleted = (todo) => {
 
 const deleteTodoById = (todo) => {
 	todoList = todoList.filter((item) => item.id !== todo.id)
+}
+
+const sortTodoListPerDate = () => {
+	todoList.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+}
+
+const handleFilterClick = (filterValue) => {
+	filter = filterValue
+
+	filters.forEach((filter) => {
+		document.getElementById(`${filter}-filter`)
+			.classList.remove('active')
+	})
+
+	document.getElementById(`${filterValue}-filter`).classList.add('active')
+
+	refreshTodoList()
+}
+
+const filterTodoList = () => {
+	switch (filter) {
+		case 'active':
+			return todoList.filter((todo) => !todo.completed)
+		case 'completed':
+			return todoList.filter((todo) => todo.completed)
+		default:
+			return todoList
+	}
 }
