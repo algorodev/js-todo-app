@@ -18,7 +18,7 @@ html {
 }
 
 body {
-	background: var(--gradient-background);
+	background: var(--color-background);
 	color: var(--color-text);
 	font-family: var(--font-primary);
 }
@@ -58,7 +58,6 @@ li {
 	flex-direction: column;
 	gap: 5px;
 	flex: 1;
-	color: var(--color-white);
 	font-weight: bold;
 	outline: none;
 }
